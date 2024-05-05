@@ -5,6 +5,8 @@ import com.anurag.footinfo.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.*;
+
 @Service
 public class PlayerService {
 
@@ -13,5 +15,15 @@ public class PlayerService {
 
     public Player savePlayer(Player player) {
         return playerRepo.save(player);
+    }
+
+    public List<Player> getPlayers() {
+        List<Player> players = new ArrayList<>();
+        playerRepo.findAll().forEach(players::add);
+        return players;
+    }
+
+    public Player getPlayer(Integer playerId) {
+        return playerRepo.findById(playerId).orElseThrow();
     }
 }
