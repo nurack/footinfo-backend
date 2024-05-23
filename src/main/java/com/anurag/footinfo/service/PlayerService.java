@@ -26,4 +26,13 @@ public class PlayerService {
     public Player getPlayer(Integer playerId) {
         return playerRepo.findById(playerId).orElseThrow();
     }
+
+    public void deletePlayer(Integer playerId) {
+        playerRepo.deleteById(playerId);
+    }
+
+    public Player updatePlayer(Player player) {
+        playerRepo.findById(player.getPlayerId()).orElseThrow();
+        return playerRepo.save(player);
+    }
 }
